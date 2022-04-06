@@ -1,7 +1,7 @@
 package com.kreitek.refactor.mal.validators;
 
 import com.kreitek.refactor.mal.Bean.Documento;
-import com.kreitek.refactor.mal.TipoUltCaracter;
+import com.kreitek.refactor.mal.Utils.TipoUltCaracter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

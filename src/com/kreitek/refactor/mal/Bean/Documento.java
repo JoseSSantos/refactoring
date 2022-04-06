@@ -1,27 +1,27 @@
 package com.kreitek.refactor.mal.Bean;
 
-import com.kreitek.refactor.mal.TIPODNI;
+import com.kreitek.refactor.mal.Utils.TIPODOCUMENTO;
 
 import java.util.Date;
 
 public abstract class Documento {
 
 
-    public TIPODNI enumTipo;
+    public TIPODOCUMENTO enumTipo;
     public String numDNI;
     public Date fchValidez;
 
-    public Documento(TIPODNI enumTipo, String numDNI, Date fchValidez) {
+    public Documento(TIPODOCUMENTO enumTipo, String numDNI, Date fchValidez) {
         this.enumTipo = enumTipo;
         this.numDNI = numDNI;
         this.fchValidez = fchValidez;
     }
 
-    public TIPODNI getEnumTipo() {
+    public TIPODOCUMENTO getEnumTipo() {
         return enumTipo;
     }
 
-    public void setEnumTipo(TIPODNI enumTipo) {
+    public void setEnumTipo(TIPODOCUMENTO enumTipo) {
         this.enumTipo = enumTipo;
     }
 
