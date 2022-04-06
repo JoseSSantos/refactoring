@@ -1,41 +1,40 @@
 package com.kreitek.refactor.mal;
 
+import com.kreitek.refactor.mal.Bean.CIF;
+import com.kreitek.refactor.mal.Bean.DNI;
+import com.kreitek.refactor.mal.Bean.Documento;
+import com.kreitek.refactor.mal.Bean.NIE;
+import com.kreitek.refactor.mal.printer.*;
+import com.kreitek.refactor.mal.validators.Validator;
+import com.kreitek.refactor.mal.validators.ValidatorCIF;
+import com.kreitek.refactor.mal.validators.ValidatorDNI;
+import com.kreitek.refactor.mal.validators.ValidatorDNI.*;
+import com.kreitek.refactor.mal.validators.ValidatorNIE;
+
 class  Main
 {
     public static void main(String args[])
     {
-        System.out.println("=====================");
-        System.out.println("Vamos a refactorizar!");
-        System.out.println("=====================");
+        printer printer = new printer();
+        printer.printBanner();
+        ValidatorDNI dniValidator = new ValidatorDNI();
+        ValidatorNIE NIEValidator = new ValidatorNIE();
+        ValidatorCIF CIFValidator = new ValidatorCIF();
 
-        // creamos un DNI correcto
-        DNI dniCorrecto = new DNI(TIPODNI.DNI, "11111111H", null);
-        Boolean esValido = (dniCorrecto.validarDNI() == 1);
-        System.out.println( "DNI " + dniCorrecto.numDNI + " es: " + esValido.toString());
+        Documento dniCorrecto = new DNI(TIPODNI.DNI, "11111111H", null);
+        Documento dniIncorrecto01 = new DNI(TIPODNI.DNI, "24324356A", null);
+        Documento nieCorrecto = new NIE(TIPODNI.NIE,"X0932707B", null);
+        Documento nieIncorrecto = new DNI(TIPODNI.NIE, "Z2691139Z", null);
+        Documento cifCorrecto = new CIF(TIPODNI.CIF, "W9696294I", null);
+        Documento cifIncorrecto = new CIF(TIPODNI.CIF, "W9696294A", null);
 
-        // creamos un DNI incorrecto
-        DNI dniIncorrecto01 = new DNI(TIPODNI.DNI, "24324356A", null);
-        Boolean esValido01 = (dniIncorrecto01.validarDNI() == 1);
-        System.out.println( "DNI " + dniIncorrecto01.numDNI + " es: " + esValido01.toString());
+        printer.printDocument(dniCorrecto, dniValidator.validate(dniCorrecto));
+        printer.printDocument(dniIncorrecto01,dniValidator.validate(dniIncorrecto01));
+        printer.printDocument(nieCorrecto,NIEValidator.validate(nieCorrecto));
+        printer.printDocument(nieIncorrecto,NIEValidator.validate(nieIncorrecto));
+        printer.printDocument(cifCorrecto,CIFValidator.validate(cifCorrecto));
+        printer.printDocument(cifIncorrecto,CIFValidator.validate(cifIncorrecto));
 
-        // creamos un NIE correcto
-        DNI nieCorrecto = new DNI(TIPODNI.NIE, "X0932707B", null);
-        Boolean esValidoNie = (nieCorrecto.validarDNI() == 1);
-        System.out.println( "NIE " + nieCorrecto.numDNI + " es: " + esValidoNie.toString());
-
-        // creamos un NIE incorrecto
-        DNI nieIncorrecto = new DNI(TIPODNI.NIE, "Z2691139Z", null);
-        Boolean esValidoNieIncorrecto = (nieIncorrecto.validarDNI() == 1);
-        System.out.println( "NIE " + nieIncorrecto.numDNI + " es: " + esValidoNieIncorrecto.toString());
-
-        // creamos un CIF correcto
-        DNI cifCorrecto = new DNI(TIPODNI.CIF, "W9696294I", null);
-        Boolean esValidoCIF = (cifCorrecto.validarDNI() == 1);
-        System.out.println( "CIF " + cifCorrecto.numDNI + " es: " + esValidoCIF.toString());
-
-        // creamos un CIF incorrecto
-        DNI cifIncorrecto = new DNI(TIPODNI.CIF, "W9696294A", null);
-        Boolean esValidoCifIncorrecto = (cifIncorrecto.validarDNI() == 1);
-        System.out.println( "NIE " + cifIncorrecto.numDNI + " es: " + esValidoCifIncorrecto.toString());
     }
+
 }
